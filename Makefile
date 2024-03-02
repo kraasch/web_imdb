@@ -1,4 +1,8 @@
 
+all:
+	make bulid
+	make install
+
 test:
 	@go run ./src/ '12 Angry Men'
 	@# prints:
@@ -12,4 +16,8 @@ test:
 build:
 	rm -rf ./build/
 	go build -o ./build/web_imdb ./src/main.go 
+
+install:
+	make build
+	cp ./build/web_imdb ~/.local/bin/web_imdb
 
