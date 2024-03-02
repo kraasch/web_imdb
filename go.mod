@@ -1,4 +1,4 @@
-module github.com/kraasch/imdb-wrapper
+module github.com/kraasch/web_imdb
 
 go 1.18
 
