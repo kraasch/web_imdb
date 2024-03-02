@@ -3,11 +3,11 @@ package main
 import (
   // read input.
   "os"
-  "time"
   // make web request to imdb.
   "github.com/StalkR/imdb"
 	"github.com/StalkR/httpcache"
   "net/http"
+  "time"
   // print output.
   "fmt"
 )
