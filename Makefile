@@ -19,5 +19,6 @@ build:
 
 install:
 	make build
+	rm -f ~/.local/bin/web_imdb
 	cp ./build/web_imdb ~/.local/bin/web_imdb
 
