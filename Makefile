@@ -9,7 +9,7 @@ test:
 	# > Search title
 	# 25 titles found.
 	# > Retrieve rating
-	# First hit: '12 Angry Men', duration '1h36m'.
+	# First hit: '12 Angry Men' (1957), duration '1h36m'.
 	# Rating: '9.0'.
 
 .PHONY: build
@@ -18,7 +18,6 @@ build:
 	go build -o ./build/web_imdb ./src/main.go 
 
 install:
-	make build
 	rm -f ~/.local/bin/web_imdb
 	cp ./build/web_imdb ~/.local/bin/web_imdb
 

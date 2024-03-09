@@ -70,7 +70,7 @@ func main() {
     if err != nil {
       fmt.Printf("NewTitle(%s) error: %v\n", id, err)
     } else {
-      fmt.Printf("First hit: '%s', duration '%s'.\n", titleResult.Name, titleResult.Duration)
+      fmt.Printf("First hit: '%s' (%d), duration '%s'.\n", titleResult.Name, titleResult.Year, titleResult.Duration)
       fmt.Printf("Rating: '%s'.\n", titleResult.Rating)
     }
   }
