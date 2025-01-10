@@ -10,6 +10,9 @@ permissions:
   # packages: write
   # issues: write
 
+builds:
+  - main: ./cmd/
+
 jobs:
   goreleaser:
     runs-on: ubuntu-latest
