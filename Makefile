@@ -4,13 +4,7 @@ all:
 	make install
 
 test:
-	@go run ./cmd/ '12 Angry Men'
-	@# prints:
-	# > Search title
-	# 25 titles found.
-	# > Retrieve rating
-	# First hit: '12 Angry Men' (1957), duration '1h36m'.
-	# Rating: '9.0'.
+	go test ./...
 
 .PHONY: build
 build:

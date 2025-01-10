@@ -26,14 +26,7 @@ func (e *customTransport) RoundTrip(r *http.Request) (*http.Response, error) {
 	return e.RoundTripper.RoundTrip(r)
 }
 
-func main() {
-
-  // read input.
-  if len(os.Args) < 1 {
-    fmt.Println("Usage: <program_name> <movie_name>")
-    os.Exit(1)
-  }
-  title := os.Args[1]
+func AskImdb(title string) (string) {
 
   // init client.
 	if _, err := os.Stat("cache"); err == nil {
@@ -47,33 +40,46 @@ func main() {
 	client.Transport = &customTransport{client.Transport}
 
   // make web request.
-  fmt.Println("> Search title")
+  s := ""
+  s += fmt.Sprintln("\n> Search title")
 	results, err := imdb.SearchTitle(client, title)
 
   // evaluate and print results.
 	if err != nil { // has error.
-		fmt.Printf("imdb.SearchTitle(%s) error: %v", title, err)
+    s += fmt.Sprintf("imdb.SearchTitle(%s) error: %v", title, err)
 	}
 	if len(results) == 0 { // no results found.
-    fmt.Printf("imdb.SearchTitle(%s) error: %d results found.", title, len(results))
+    s += fmt.Sprintf("imdb.SearchTitle(%s) error: %d results found.", title, len(results))
 	}
   // print results.
-  fmt.Printf("%d titles found.", len(results))
+  s += fmt.Sprintf("%d titles found.\n", len(results))
 
   // get rating for title.
   if len(results) > 0 {
     fmt.Println()
-    fmt.Println("> Retrieve rating")
+    s += fmt.Sprintln("> Retrieve rating")
     var id = results[0].ID
     // make another request.
     titleResult, err := imdb.NewTitle(client, id)
     if err != nil {
-      fmt.Printf("NewTitle(%s) error: %v\n", id, err)
+      s += fmt.Sprintf("NewTitle(%s) error: %v\n", id, err)
     } else {
-      fmt.Printf("First hit: '%s' (%d), duration '%s'.\n", titleResult.Name, titleResult.Year, titleResult.Duration)
-      fmt.Printf("Rating: '%s'.\n", titleResult.Rating)
+      s += fmt.Sprintf("First hit: '%s' (%d), duration '%s'.\n", titleResult.Name, titleResult.Year, titleResult.Duration)
+      s += fmt.Sprintf("Rating: '%s'.\n", titleResult.Rating)
     }
   }
+  return s
+}
 
+func main() {
+  // read input.
+  if len(os.Args) < 1 {
+    fmt.Println("Usage: <program_name> <movie_name>")
+    os.Exit(1)
+  }
+  title := os.Args[1]
+  // make request.
+  result := AskImdb(title)
+  fmt.Println(result)
 }
 
