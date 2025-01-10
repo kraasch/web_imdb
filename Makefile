@@ -1,6 +1,6 @@
 
 all:
-	make bulid
+	make build
 	make install
 
 test:
