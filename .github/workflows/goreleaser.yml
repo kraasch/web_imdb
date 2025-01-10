@@ -28,9 +28,8 @@ jobs:
       - name: Run GoReleaser
         uses: goreleaser/goreleaser-action@v6
         with:
-          distribution: goreleaser
-          version: "~> v1"
-          # Version is either 'latest', 'nightly', 'vX.Y.Z'.
+          distribution: goreleaser # Either 'goreleaser' (default) or 'goreleaser-pro'
+          version: "~> v1" # Version is either 'latest', 'nightly', 'vX.Y.Z'.
           args: release --clean
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
