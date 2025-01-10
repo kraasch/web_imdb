@@ -4,7 +4,7 @@ all:
 	make install
 
 test:
-	@go run ./src/ '12 Angry Men'
+	@go run ./cmd/ '12 Angry Men'
 	@# prints:
 	# > Search title
 	# 25 titles found.
@@ -15,7 +15,7 @@ test:
 .PHONY: build
 build:
 	rm -rf ./build/
-	go build -o ./build/web_imdb ./src/main.go 
+	go build -o ./build/web_imdb ./cmd/main.go 
 
 install:
 	rm -f ~/.local/bin/web_imdb
